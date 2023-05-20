@@ -486,7 +486,7 @@ function submitChat(userInput, conversation, messageId, parentId, settings, mode
             // update gpt4 counter
             chrome.storage.local.get(['gpt4Timestamps', 'settings', 'conversationLimit'], (result) => {
               const { gpt4Timestamps } = result;
-              if (result.settings.selectedModel.slug !== 'gpt-4') return;
+              if (!result.settings.selectedModel.tags.includes("gpt4") && result.settings.selectedModel.slug !== 'gpt-4') return;
               const now = new Date().getTime();
               const gpt4CounterElement = document.querySelector('#gpt4-counter');
               gpt4CounterElement.style.display = result.settings.showGpt4Counter ? 'block' : 'none';
